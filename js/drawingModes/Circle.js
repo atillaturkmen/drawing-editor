@@ -14,9 +14,9 @@ export class Circle extends DrawingMode {
         this.endX = x;
         this.endY = y;
 
-        const radius = Math.sqrt(Math.pow(this.endX - this.startX, 2) + Math.pow(this.endY - this.startY, 2));
+        this.radius = Math.sqrt(Math.pow(this.endX - this.startX, 2) + Math.pow(this.endY - this.startY, 2));
         this.context.beginPath();
-        this.context.arc(this.startX, this.startY, radius, 0, 2 * Math.PI);
+        this.context.arc(this.startX, this.startY, this.radius, 0, 2 * Math.PI);
         if (this.fill) {
             this.context.fill();
         } else {
@@ -27,5 +27,11 @@ export class Circle extends DrawingMode {
     _endCircle = () => {
         this.canvas.removeEventListener("mousemove", this._dragCircle);
         this.canvas.removeEventListener("mouseup", this._endCircle);
+        DrawingMode.drawnShapes.push({
+            type: "circle",
+            startX: this.startX,
+            startY: this.startY,
+            radius: this.radius,
+        });
     };
 }

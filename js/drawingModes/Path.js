@@ -23,5 +23,12 @@ export class Path extends DrawingMode {
     _endPath = () => {
         this.canvas.removeEventListener("mousemove", this._dragPath);
         this.canvas.removeEventListener("mouseup", this._endPath);
+        DrawingMode.drawnShapes.push({
+            type: "path",
+            startX: this.startX,
+            startY: this.startY,
+            endX: this.endX,
+            endY: this.endY,
+        });
     };
 }

@@ -17,11 +17,12 @@ export class Rectangle extends DrawingMode {
         const width = this.endX - this.startX;
         const height = this.endY - this.startY;
 
+        this.context.beginPath();
+        this.context.rect(this.startX, this.startY, width, height);
+
         if (this.fill) {
-            this.context.fillRect(this.startX, this.startY, width, height);
+            this.context.fill();
         } else {
-            this.context.beginPath();
-            this.context.rect(this.startX, this.startY, width, height);
             this.context.stroke();
         }
     };
@@ -29,5 +30,13 @@ export class Rectangle extends DrawingMode {
     _endRect = () => {
         this.canvas.removeEventListener("mousemove", this._dragRect);
         this.canvas.removeEventListener("mouseup", this._endRect);
+        DrawingMode.drawnShapes.push({
+            type: "rectangle",
+            startX: this.startX,
+            startY: this.startY,
+            width: this.endX - this.startX,
+            height: this.endY - this.startY,
+            fill: this.fill,
+        });
     };
 }

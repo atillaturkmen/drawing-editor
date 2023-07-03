@@ -2,6 +2,8 @@ import {Pen} from "../drawingModes/Pen.js";
 import {Path} from "../drawingModes/Path.js";
 import {Rectangle} from "../drawingModes/Rectangle.js";
 import {Circle} from "../drawingModes/Circle.js";
+import {Move} from "../drawingModes/Move.js";
+import {DrawingMode} from "../drawingModes/DrawingMode.js";
 
 export class ToolSelector {
     constructor(context, canvas) {
@@ -12,12 +14,14 @@ export class ToolSelector {
         this.path = new Path(context, canvas);
         this.rect = new Rectangle(context, canvas);
         this.circle = new Circle(context, canvas);
+        this.move = new Move(context, canvas);
 
         // Bind the functions to their respective objects
         this.penStartDraw = this.pen.startDraw.bind(this.pen);
         this.startPath = this.path.startPath.bind(this.path);
         this.startRect = this.rect.startRect.bind(this.rect);
         this.startCircle = this.circle.startCircle.bind(this.circle);
+        this.startMove = this.move.startMove.bind(this.move);
     }
 
     toggleFill() {
@@ -49,11 +53,12 @@ export class ToolSelector {
                 this.activeEvent = this.startCircle;
                 break;
 
-            default:
+            case 'move':
+                this.canvas.addEventListener("mousedown", this.startMove);
+                this.activeEvent = this.startMove;
                 break;
         }
 
-        this.recentMode = mode;
         this._selectMode(e);
     }
 
