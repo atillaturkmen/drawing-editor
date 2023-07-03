@@ -40,6 +40,13 @@ export function initializeButtons(context, canvas) {
     function clearCanvas() {
         context.clearRect(0, 0, canvas.width, canvas.height);
     }
-
     document.getElementById('clear').addEventListener('click', clearCanvas);
+
+    // Fill Button Initialization
+
+    function toggleFill() {
+        toolSelector.toggleFill();
+        this.classList.toggle('selected');
+    }
+    document.getElementById('fill').addEventListener('click', toggleFill);
 }

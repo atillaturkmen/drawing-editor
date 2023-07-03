@@ -17,9 +17,13 @@ export class Rectangle extends DrawingMode {
         const width = this.endX - this.startX;
         const height = this.endY - this.startY;
 
-        this.context.beginPath();
-        this.context.rect(this.startX, this.startY, width, height);
-        this.context.stroke();
+        if (this.fill) {
+            this.context.fillRect(this.startX, this.startY, width, height);
+        } else {
+            this.context.beginPath();
+            this.context.rect(this.startX, this.startY, width, height);
+            this.context.stroke();
+        }
     };
 
     _endRect = () => {

@@ -2,7 +2,7 @@ export class DrawingMode {
     constructor(context, canvas) {
         this.context = context;
         this.canvas = canvas;
-        this.drawing = false;
+        this.fill = false;
     }
 
     startShape(e) {
@@ -21,5 +21,9 @@ export class DrawingMode {
             x: (evt.clientX - rect.left) * scaleX,
             y: (evt.clientY - rect.top) * scaleY
         }
+    }
+
+    toggleFill() {
+        this.fill = !this.fill;
     }
 }

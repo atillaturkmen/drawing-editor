@@ -17,7 +17,11 @@ export class Circle extends DrawingMode {
         const radius = Math.sqrt(Math.pow(this.endX - this.startX, 2) + Math.pow(this.endY - this.startY, 2));
         this.context.beginPath();
         this.context.arc(this.startX, this.startY, radius, 0, 2 * Math.PI);
-        this.context.stroke();
+        if (this.fill) {
+            this.context.fill();
+        } else {
+            this.context.stroke();
+        }
     };
 
     _endCircle = () => {

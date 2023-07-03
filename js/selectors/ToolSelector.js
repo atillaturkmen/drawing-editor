@@ -20,6 +20,25 @@ export class ToolSelector {
         this.startCircle = this.circle.startCircle.bind(this.circle);
     }
 
+    toggleFill() {
+        switch (this.recentMode) {
+            case 'pen':
+                this.pen.toggleFill();
+                break;
+            case 'path':
+                this.path.toggleFill();
+                break;
+            case 'rect':
+                this.rect.toggleFill();
+                break;
+            case 'circle':
+                this.circle.toggleFill();
+                break;
+            default:
+                break;
+        }
+    }
+
     setMode(e, mode) {
         this.canvas.removeEventListener("mousedown", this.activeEvent);
 
@@ -48,6 +67,7 @@ export class ToolSelector {
                 break;
         }
 
+        this.recentMode = mode;
         this._selectMode(e);
     }
 

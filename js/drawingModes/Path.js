@@ -5,7 +5,6 @@ export class Path extends DrawingMode {
         super.startShape(e);
         this.canvas.addEventListener("mousemove", this._dragPath);
         this.canvas.addEventListener("mouseup", this._endPath);
-
     }
 
     _dragPath = (e) => {
