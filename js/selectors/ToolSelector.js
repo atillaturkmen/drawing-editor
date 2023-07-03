@@ -8,7 +8,9 @@ export class ToolSelector {
     constructor(context, canvas) {
         this.canvas = canvas;
         this.context = context;
-        this.activeEvent = null;
+
+        this.activeMouseDownEvent = null;
+        this.activeMouseMoveEvent = null;
 
         this.pen = new Pen(context, canvas);
         this.path = new LineDrawer(context, canvas);
@@ -22,6 +24,7 @@ export class ToolSelector {
         this.startRect = this.rect.startRect.bind(this.rect);
         this.startCircle = this.circle.startCircle.bind(this.circle);
         this.startMove = this.move.startMove.bind(this.move);
+        this.hoverMove = this.move.hoverForMoveCursor.bind(this.move);
     }
 
     toggleFill() {
@@ -30,32 +33,35 @@ export class ToolSelector {
     }
 
     setMode(e, mode) {
-        this.canvas.removeEventListener("mousedown", this.activeEvent);
+        this.canvas.removeEventListener("mousedown", this.activeMouseDownEvent);
+        this.canvas.removeEventListener("mousemove", this.activeMouseMoveEvent);
 
         switch (mode) {
             case 'pen':
                 this.canvas.addEventListener("mousedown", this.penStartDraw);
-                this.activeEvent = this.penStartDraw;
+                this.activeMouseDownEvent = this.penStartDraw;
                 break;
 
             case 'path':
                 this.canvas.addEventListener("mousedown", this.startPath);
-                this.activeEvent = this.startPath;
+                this.activeMouseDownEvent = this.startPath;
                 break;
 
             case 'rect':
                 this.canvas.addEventListener("mousedown", this.startRect);
-                this.activeEvent = this.startRect;
+                this.activeMouseDownEvent = this.startRect;
                 break;
 
             case 'circle':
                 this.canvas.addEventListener("mousedown", this.startCircle);
-                this.activeEvent = this.startCircle;
+                this.activeMouseDownEvent = this.startCircle;
                 break;
 
             case 'move':
                 this.canvas.addEventListener("mousedown", this.startMove);
-                this.activeEvent = this.startMove;
+                this.canvas.addEventListener("mousemove", this.hoverMove);
+                this.activeMouseDownEvent = this.startMove;
+                this.activeMouseMoveEvent = this.hoverMove;
                 break;
         }
 

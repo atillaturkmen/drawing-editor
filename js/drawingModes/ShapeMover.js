@@ -1,6 +1,11 @@
 import {DrawingMode} from "./DrawingMode.js";
 
 export class ShapeMover extends DrawingMode {
+
+    constructor(context, canvas) {
+        super(context, canvas);
+        this.moveCursorActive = false;
+    }
     startMove = (e) => {
         this.canvas.addEventListener("mousemove", this._handleMouseMove);
         this.canvas.addEventListener("mouseup", this._handleMouseUp);
@@ -16,6 +21,24 @@ export class ShapeMover extends DrawingMode {
                 this.isDragging = true;
                 return;
             }
+        }
+    }
+
+    hoverForMoveCursor = (e) => {
+        const {x, y} = this.getMousePos(e);
+        for (let i = DrawingMode.drawnShapes.length - 1; i >= 0; i--) {
+            const shape = DrawingMode.drawnShapes[i];
+            if (shape.isSelected(x, y)) {
+                if (!this.moveCursorActive) {
+                    this.canvas.classList.toggle('cursor-move');
+                    this.moveCursorActive = true;
+                }
+                return;
+            }
+        }
+        if (this.moveCursorActive) {
+            this.canvas.classList.toggle('cursor-move');
+            this.moveCursorActive = false;
         }
     }
 
