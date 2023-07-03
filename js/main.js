@@ -2,15 +2,13 @@ import '../css/style.css'
 import {initializeButtons} from "./initializeButtons.js";
 
 const canvas = document.getElementById("canvas");
-const width = window.innerWidth;
-const height = window.innerHeight;
+
+// resize canvas
+canvas.height = window.innerHeight;
+canvas.width = window.innerWidth;
 
 // context of the canvas
 const context = canvas.getContext("2d");
-
-// resize canvas
-canvas.height = height;
-canvas.width = width;
 
 initializeButtons(context, canvas);
 
