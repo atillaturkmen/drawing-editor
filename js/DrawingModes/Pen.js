@@ -11,7 +11,7 @@ export class Pen extends DrawingMode {
         this.draw(e);
     }
 
-    endDraw(e) {
+    endDraw() {
         this.drawing = false;
     }
 }

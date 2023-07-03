@@ -4,7 +4,6 @@ import {Rectangle} from "./DrawingModes/Rectangle.js";
 
 export class ToolSelector {
     constructor(context, canvas) {
-        this.mode = 'draw';
         this.activeEvents = {
             "mousedown": undefined,
             "mouseup": undefined,
@@ -61,10 +60,10 @@ export class ToolSelector {
                 break;
         }
 
-        this._selectMode(e, mode);
+        this._selectMode(e);
     }
 
-    _selectMode(e, newMode) {
+    _selectMode(e) {
         const tools = document.getElementsByClassName("tool");
         for (const tool of tools) {
             tool.classList.remove('selected');
@@ -73,12 +72,8 @@ export class ToolSelector {
         const size = document.querySelector(".size.selected");
         if (size !== null) {
             size.classList.remove('hide-select');
-            if (newMode === 'rect')
-                size.classList.add('hide-select');
         }
 
         e.target.parentElement.classList.add('selected');
-
-        this.mode = newMode;
     }
 }
