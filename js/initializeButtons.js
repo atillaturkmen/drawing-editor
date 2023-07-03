@@ -1,18 +1,23 @@
-import {ColorSelector} from "./selectors/ColorSelector.js";
 import {ToolSelector} from "./selectors/ToolSelector.js";
 import {SizeSelector} from "./selectors/SizeSelector.js";
 
 export function initializeButtons(context, canvas) {
     // Color Selection Initialization
 
-    const colorSelector = new ColorSelector(context);
-    const colorButtons = document.getElementById('colors').children;
+    const colorPicker = document.getElementById("color-picker");
+    const colorPreview = document.getElementById("color-picker-label");
 
-    for (const colorButton of colorButtons) {
-        colorButton.addEventListener('click', (e) => {
-            colorSelector.setColor(e, colorButton.classList.value.replace(/bg-(\w*).*/, '$1'));
-        });
-    }
+    // Trigger the color picker when clicking the color preview
+    colorPreview.addEventListener("click", function() {
+        colorPicker.click();
+    });
+
+    // Update the color preview when the color picker value changes
+    colorPicker.addEventListener("input", function() {
+        colorPreview.style.backgroundColor = colorPicker.value;
+        context.strokeStyle = colorPicker.value;
+        context.fillStyle = colorPicker.value;
+    });
 
     // Tool Selection Initialization
 
