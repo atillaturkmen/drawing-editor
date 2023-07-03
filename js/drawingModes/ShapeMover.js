@@ -55,6 +55,7 @@ export class ShapeMover extends DrawingMode {
         }
 
         this.context.strokeStyle = currentColor;
+        this.context.fillStyle = currentColor;
         this.context.lineWidth = currentSize;
     }
 }
