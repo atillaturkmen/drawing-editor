@@ -7,6 +7,7 @@
 </head>
 <body class="flex flex-col items-center justify-center h-full py-8 px-8 w-full lg:w-4/5 xl:w-3/4 2xl:w-2/3 mx-auto">
 <div class="w-full flex flex-row justify-between">
+
     <div id="colors" class="grid grid-rows-2 grid-cols-4 gap-1 justify-self-start">
         <button id="black" class="bg-black setting"></button>
         <button class="bg-red-500 setting"></button>
@@ -29,6 +30,7 @@
             <img src="./assets/big.svg" alt="big">
         </button>
     </div>
+
     <div id="tools" class="grid grid-rows-1 grid-cols-3 gap-1 justify-self-end">
         <button id="pen" class="setting tool">
             <img src="./assets/pen.svg" alt="pen">
@@ -40,11 +42,13 @@
             <img src="./assets/square.svg" alt="square">
         </button>
     </div>
+
     <div id="clear" class="grid grid-rows-1 grid-cols-1 gap-1 justify-self-end">
         <button class="setting">
             <img src="./assets/clear.svg" alt="clear">
         </button>
     </div>
+
 </div>
 <canvas id="canvas" class="w-full max-h-full aspect-video border-2 border-black border-solid mb-8 mt-8"></canvas>
 <script type="module" src="./js/main.js"></script>
