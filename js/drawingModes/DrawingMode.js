@@ -1,8 +1,15 @@
-export class DrawingMode{
+export class DrawingMode {
     constructor(context, canvas) {
         this.context = context;
         this.canvas = canvas;
         this.drawing = false;
+    }
+
+    startShape(e) {
+        const {x, y} = this.getMousePos(e);
+        this.startX = x;
+        this.startY = y;
+        this.savedImageData = this.context.getImageData(0, 0, this.canvas.width, this.canvas.height);
     }
 
     getMousePos(evt) {

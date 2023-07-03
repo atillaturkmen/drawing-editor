@@ -15,9 +15,9 @@ export class ToolSelector {
 
         // Bind the functions to their respective objects
         this.penStartDraw = this.pen.startDraw.bind(this.pen);
-        this.pathStart = this.path.startPath.bind(this.path);
-        this.rectStart = this.rect.startRect.bind(this.rect);
-        this.circleStart = this.circle.startCircle.bind(this.circle);
+        this.startPath = this.path.startPath.bind(this.path);
+        this.startRect = this.rect.startRect.bind(this.rect);
+        this.startCircle = this.circle.startCircle.bind(this.circle);
     }
 
     setMode(e, mode) {
@@ -30,18 +30,18 @@ export class ToolSelector {
                 break;
 
             case 'path':
-                this.canvas.addEventListener("mousedown", this.pathStart);
-                this.activeEvent = this.pathStart;
+                this.canvas.addEventListener("mousedown", this.startPath);
+                this.activeEvent = this.startPath;
                 break;
 
             case 'rect':
-                this.canvas.addEventListener("mousedown", this.rectStart);
-                this.activeEvent = this.rectStart;
+                this.canvas.addEventListener("mousedown", this.startRect);
+                this.activeEvent = this.startRect;
                 break;
 
             case 'circle':
-                this.canvas.addEventListener("mousedown", this.circleStart);
-                this.activeEvent = this.circleStart;
+                this.canvas.addEventListener("mousedown", this.startCircle);
+                this.activeEvent = this.startCircle;
                 break;
 
             default:
