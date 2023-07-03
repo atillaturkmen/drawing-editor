@@ -4,6 +4,7 @@ import {Rectangle} from "../drawingModes/Rectangle.js";
 
 export class ToolSelector {
     constructor(context, canvas) {
+        this.canvas = canvas;
         this.activeEvents = {
             "mousedown": undefined,
             "mouseup": undefined,
@@ -22,38 +23,31 @@ export class ToolSelector {
         this.pathEndPath = this.path.endPath.bind(this.path);
 
         this.rectStartRect = this.rect.startRect.bind(this.rect);
-        this.rectEndRect = this.rect.endRect.bind(this.rect);
     }
 
     setMode(e, mode) {
         for (const event in this.activeEvents) {
-            window.removeEventListener(event, this.activeEvents[event]);
+            this.canvas.removeEventListener(event, this.activeEvents[event]);
             this.activeEvents[event] = undefined;
         }
 
         switch (mode) {
             case 'pen':
-                window.addEventListener("mousedown", this.penStartDraw);
-                window.addEventListener("mouseup", this.penEndDraw);
-                window.addEventListener("mousemove", this.penDraw);
+                this.canvas.addEventListener("mousedown", this.penStartDraw);
+                this.canvas.addEventListener("mouseup", this.penEndDraw);
+                this.canvas.addEventListener("mousemove", this.penDraw);
 
                 this.activeEvents['mousedown'] = this.penStartDraw;
                 this.activeEvents['mouseup'] = this.penEndDraw;
                 this.activeEvents['mousemove'] = this.penDraw;
                 break;
             case 'path':
-                window.addEventListener("mousedown", this.pathStartPath);
-                window.addEventListener("mouseup", this.pathEndPath);
-
+                this.canvas.addEventListener("mousedown", this.pathStartPath);
                 this.activeEvents['mousedown'] = this.pathStartPath;
-                this.activeEvents['mouseup'] = this.pathEndPath;
                 break;
             case 'rect':
-                window.addEventListener("mousedown", this.rectStartRect);
-                window.addEventListener("mouseup", this.rectEndRect);
-
+                this.canvas.addEventListener("mousedown", this.rectStartRect);
                 this.activeEvents['mousedown'] = this.rectStartRect;
-                this.activeEvents['mouseup'] = this.rectEndRect;
                 break;
 
             default:

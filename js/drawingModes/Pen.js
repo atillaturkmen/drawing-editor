@@ -14,4 +14,13 @@ export class Pen extends DrawingMode {
     endDraw() {
         this.drawing = false;
     }
+
+    draw(e) {
+        if (!this.drawing) return;
+
+        let {x, y} = this.getMousePos(e);
+
+        this.context.lineTo(x, y);
+        this.context.stroke();
+    }
 }

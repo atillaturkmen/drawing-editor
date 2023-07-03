@@ -3,8 +3,7 @@ import {DrawingMode} from "./DrawingMode.js";
 export class Rectangle extends DrawingMode {
     constructor(context, canvas) {
         super(context, canvas);
-        this.drawing = false;
-        this.dragging = false; // Flag for dragging
+        this.dragging = false;
         this.startX = 0; // Initial X position of the rectangle
         this.startY = 0; // Initial Y position of the rectangle
     }
@@ -14,15 +13,18 @@ export class Rectangle extends DrawingMode {
         const {x, y} = this.getMousePos(e);
         this.startX = x; // Store initial X position
         this.startY = y; // Store initial Y position
-        this.savedImageData = this.context.getImageData(0, 0, this.canvas.width, this.canvas.height); // Save the canvas image data
+
+        // Save the canvas image data
+        this.savedImageData = this.context.getImageData(0, 0, this.canvas.width, this.canvas.height);
+
         window.addEventListener("mousemove", this._dragRect.bind(this));
-        window.addEventListener("mouseup", this.endRect.bind(this));
+        window.addEventListener("mouseup", this._endRect.bind(this));
     }
 
-    endRect() {
+    _endRect() {
         this.dragging = false; // Reset dragging flag
         window.removeEventListener("mousemove", this._dragRect.bind(this));
-        window.removeEventListener("mouseup", this.endRect.bind(this));
+        window.removeEventListener("mouseup", this._endRect.bind(this));
     }
 
     _dragRect(e) {
