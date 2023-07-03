@@ -21,22 +21,8 @@ export class ToolSelector {
     }
 
     toggleFill() {
-        switch (this.recentMode) {
-            case 'pen':
-                this.pen.toggleFill();
-                break;
-            case 'path':
-                this.path.toggleFill();
-                break;
-            case 'rect':
-                this.rect.toggleFill();
-                break;
-            case 'circle':
-                this.circle.toggleFill();
-                break;
-            default:
-                break;
-        }
+        this.rect.toggleFill();
+        this.circle.toggleFill();
     }
 
     setMode(e, mode) {
