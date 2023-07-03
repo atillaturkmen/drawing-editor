@@ -1,6 +1,6 @@
-import {Pen} from "./DrawingModes/Pen.js";
-import {Path} from "./DrawingModes/Path.js";
-import {Rectangle} from "./DrawingModes/Rectangle.js";
+import {Pen} from "../drawingModes/Pen.js";
+import {Path} from "../drawingModes/Path.js";
+import {Rectangle} from "../drawingModes/Rectangle.js";
 
 export class ToolSelector {
     constructor(context, canvas) {

@@ -1,6 +1,6 @@
-import {ColorSelector} from "./ColorSelector.js";
-import {ToolSelector} from "./ToolSelector.js";
-import {SizeSelector} from "./SizeSelector.js";
+import {ColorSelector} from "./selectors/ColorSelector.js";
+import {ToolSelector} from "./selectors/ToolSelector.js";
+import {SizeSelector} from "./selectors/SizeSelector.js";
 
 export function initializeButtons(context, canvas) {
     // Color Selection Initialization
