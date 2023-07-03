@@ -15,6 +15,7 @@ export class Shape {
 
     drawShape(context) {
         context.strokeStyle = this.color;
+        context.fillStyle = this.color;
         context.lineWidth = this.size;
         context.beginPath();
     }
