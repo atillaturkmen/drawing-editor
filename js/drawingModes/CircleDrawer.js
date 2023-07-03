@@ -1,6 +1,7 @@
 import {DrawingMode} from "./DrawingMode.js";
+import {Circle} from "../drawnShapes/Circle.js";
 
-export class Circle extends DrawingMode {
+export class CircleDrawer extends DrawingMode {
     startCircle(e) {
         super.startShape(e);
         this.canvas.addEventListener("mousemove", this._dragCircle);
@@ -27,11 +28,7 @@ export class Circle extends DrawingMode {
     _endCircle = () => {
         this.canvas.removeEventListener("mousemove", this._dragCircle);
         this.canvas.removeEventListener("mouseup", this._endCircle);
-        DrawingMode.drawnShapes.push({
-            type: "circle",
-            startX: this.startX,
-            startY: this.startY,
-            radius: this.radius,
-        });
+        const circle = new Circle(this.context.strokeStyle, this.context.lineWidth, this.startX, this.startY, this.radius, this.fill);
+        DrawingMode.drawnShapes.push(circle);
     };
 }

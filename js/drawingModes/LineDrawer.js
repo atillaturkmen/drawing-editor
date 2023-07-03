@@ -1,6 +1,7 @@
 import {DrawingMode} from "./DrawingMode.js";
+import {Line} from "../drawnShapes/Line.js";
 
-export class Path extends DrawingMode {
+export class LineDrawer extends DrawingMode {
     startPath(e) {
         super.startShape(e);
         this.canvas.addEventListener("mousemove", this._dragPath);
@@ -23,12 +24,7 @@ export class Path extends DrawingMode {
     _endPath = () => {
         this.canvas.removeEventListener("mousemove", this._dragPath);
         this.canvas.removeEventListener("mouseup", this._endPath);
-        DrawingMode.drawnShapes.push({
-            type: "path",
-            startX: this.startX,
-            startY: this.startY,
-            endX: this.endX,
-            endY: this.endY,
-        });
+        const line = new Line(this.context.strokeStyle, this.context.lineWidth, this.startX, this.startY, this.endX, this.endY);
+        DrawingMode.drawnShapes.push(line);
     };
 }

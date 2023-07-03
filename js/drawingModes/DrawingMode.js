@@ -27,4 +27,8 @@ export class DrawingMode {
     toggleFill() {
         this.fill = !this.fill;
     }
+
+    moveShape(deltaX, deltaY) {
+        throw new Error('Abstract method moveShape has not been implemented.');
+    }
 }

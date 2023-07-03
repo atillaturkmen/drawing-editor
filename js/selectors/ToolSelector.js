@@ -1,20 +1,20 @@
 import {Pen} from "../drawingModes/Pen.js";
-import {Path} from "../drawingModes/Path.js";
-import {Rectangle} from "../drawingModes/Rectangle.js";
-import {Circle} from "../drawingModes/Circle.js";
-import {Move} from "../drawingModes/Move.js";
-import {DrawingMode} from "../drawingModes/DrawingMode.js";
+import {LineDrawer} from "../drawingModes/LineDrawer.js";
+import {RectangleDrawer} from "../drawingModes/RectangleDrawer.js";
+import {CircleDrawer} from "../drawingModes/CircleDrawer.js";
+import {ShapeMover} from "../drawingModes/ShapeMover.js";
 
 export class ToolSelector {
     constructor(context, canvas) {
         this.canvas = canvas;
+        this.context = context;
         this.activeEvent = null;
 
         this.pen = new Pen(context, canvas);
-        this.path = new Path(context, canvas);
-        this.rect = new Rectangle(context, canvas);
-        this.circle = new Circle(context, canvas);
-        this.move = new Move(context, canvas);
+        this.path = new LineDrawer(context, canvas);
+        this.rect = new RectangleDrawer(context, canvas);
+        this.circle = new CircleDrawer(context, canvas);
+        this.move = new ShapeMover(context, canvas);
 
         // Bind the functions to their respective objects
         this.penStartDraw = this.pen.startDraw.bind(this.pen);
