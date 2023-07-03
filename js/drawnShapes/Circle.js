@@ -11,7 +11,7 @@ export class Circle extends Shape {
 
     isSelected(x, y) {
         const distance = Math.sqrt((this.startX - x) ** 2 + (this.startY - y) ** 2);
-        return distance <= this.radius;
+        return distance <= this.radius + this.distanceThreshold;
     }
 
     moveShape(deltaX, deltaY) {

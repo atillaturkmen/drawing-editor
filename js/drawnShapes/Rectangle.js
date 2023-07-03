@@ -11,7 +11,8 @@ export class Rectangle extends Shape {
     }
 
     isSelected(x, y) {
-        return x >= this.startX && x <= this.startX + this.width && y >= this.startY && y <= this.startY + this.height;
+        return x + this.distanceThreshold >= this.startX && x <= this.startX + this.width + this.distanceThreshold &&
+            y + this.distanceThreshold >= this.startY && y <= this.startY + this.height + this.distanceThreshold;
     }
 
     moveShape(deltaX, deltaY) {
