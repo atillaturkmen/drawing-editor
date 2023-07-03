@@ -9,10 +9,14 @@ export class Pen extends DrawingMode {
         this.drawing = true;
         this.context.beginPath();
         this.draw(e);
+        this.canvas.addEventListener("mousemove", this.draw.bind(this));
+        this.canvas.addEventListener("mouseup", this.endDraw.bind(this));
     }
 
     endDraw() {
         this.drawing = false;
+        this.canvas.removeEventListener("mousemove", this.draw.bind(this));
+        this.canvas.removeEventListener("mouseup", this.endDraw.bind(this));
     }
 
     draw(e) {
