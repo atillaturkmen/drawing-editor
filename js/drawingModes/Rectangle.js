@@ -1,13 +1,6 @@
 import {DrawingMode} from "./DrawingMode.js";
 
 export class Rectangle extends DrawingMode {
-    constructor(context, canvas) {
-        super(context, canvas);
-        this.dragging = false;
-        this.startX = 0; // Initial X position of the rectangle
-        this.startY = 0; // Initial Y position of the rectangle
-    }
-
     startRect(e) {
         this.dragging = true; // Set dragging flag
         const {x, y} = this.getMousePos(e);
