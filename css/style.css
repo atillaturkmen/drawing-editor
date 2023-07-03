@@ -33,3 +33,25 @@
 #color-picker-label {
     cursor: pointer;
 }
+
+#paint-size-slider::-webkit-slider-thumb {
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    background-color: white;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#paint-size-slider::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    background-color: white;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#paint-size-slider:hover::-webkit-slider-thumb,
+#paint-size-slider:hover::-moz-range-thumb {
+    background-color: gray;
+}

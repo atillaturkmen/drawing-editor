@@ -14,9 +14,11 @@ canvas.classList.toggle('cursor-move');
 // context of the canvas
 const context = canvas.getContext("2d");
 
+context.lineCap = "round";
+context.lineJoin = "round";
+
 initializeButtons(context, canvas);
 
 // set default settings
 context.lineCap = 'round';
-document.getElementById('small').firstElementChild.click();
 document.getElementById('pen').firstElementChild.click();

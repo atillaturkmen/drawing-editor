@@ -1,5 +1,4 @@
 import {ToolSelector} from "./selectors/ToolSelector.js";
-import {SizeSelector} from "./selectors/SizeSelector.js";
 
 export function initializeButtons(context, canvas) {
     // Color Selection Initialization
@@ -32,13 +31,12 @@ export function initializeButtons(context, canvas) {
 
     // Size Selection Initialization
 
-    const sizeSelector = new SizeSelector(context);
-    const sizeButtons = document.getElementsByClassName('size');
-    for (const sizeButton of sizeButtons) {
-        sizeButton.addEventListener('click', (e) => {
-            sizeSelector.setSize(e, sizeButton.id);
-        });
-    }
+    const paintSizeSlider = document.getElementById("paint-size-slider");
+    const paintSizeValue = document.getElementById("paint-size-value");
+    paintSizeSlider.addEventListener("input", function() {
+        context.lineWidth = parseInt(paintSizeSlider.value);
+        paintSizeValue.innerHTML = paintSizeSlider.value;
+    });
 
     // Clear Canvas Button Initialization
 

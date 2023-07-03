@@ -9,23 +9,20 @@
 <div class="w-full flex flex-row justify-between">
 
     <div class="relative flex items-center">
-        <label id="color-picker-label" for="color-picker" class="mr-2 bg-black text-white px-10 rounded-lg flex items-center h-full">Pick Color</label>
+        <label id="color-picker-label" for="color-picker"
+               class="mr-2 bg-black text-white px-10 rounded-lg flex items-center h-full">Pick Color</label>
         <div class="flex items-center">
-            <input type="color" id="color-picker" class="w-12 h-12 appearance-none rounded-lg border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <input type="color" id="color-picker"
+                   class="w-12 h-12 appearance-none rounded-lg border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
         </div>
     </div>
 
-    <div id="sizes" class="grid grid-rows-1 grid-cols-3 gap-1 justify-self-end">
-        <button id="small" class="setting size">
-            <img src="./assets/small.svg" alt="small">
-        </button>
-        <button id="medium" class="setting size">
-            <img src="./assets/medium.svg" alt="medium">
-        </button>
-        <button id="big" class="setting size">
-            <img src="./assets/big.svg" alt="big">
-        </button>
-    </div>
+    <label for="paint-size-slider" class="flex items-center space-x-2">
+        <span class="text-gray-700">Paint Size:</span>
+        <input type="range" id="paint-size-slider" min="1" max="99" value="10"
+               class="w-48 appearance-none bg-gradient-to-r from-black to-black rounded-md h-3 outline-none">
+        <span id="paint-size-value" class="w-2 text-gray-700">10</span>
+    </label>
 
     <div id="tools" class="grid grid-rows-2 grid-cols-5 gap-1 justify-self-end">
         <button id="pen" class="setting tool">
@@ -55,7 +52,8 @@
     </div>
 
 </div>
-<canvas id="canvas" class="w-full max-h-full aspect-video border-2 border-black border-solid mb-8 mt-8 cursor-move"></canvas>
+<canvas id="canvas"
+        class="w-full max-h-full aspect-video border-2 border-black border-solid mb-8 mt-8 cursor-move"></canvas>
 <script type="module" src="./js/main.js"></script>
 </body>
 

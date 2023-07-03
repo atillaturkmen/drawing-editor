@@ -18,6 +18,7 @@ export class Pen extends DrawingMode {
 
         this.context.lineTo(x, y);
         this.context.stroke();
+
         this.path.push({
             x: x,
             y: y,
