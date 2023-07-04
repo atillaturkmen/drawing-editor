@@ -2,16 +2,15 @@ import {DrawingMode} from "./DrawingMode.js";
 import {PenShape} from "../drawnShapes/PenShape.js";
 
 export class Pen extends DrawingMode {
-    startDraw(e) {
+    handleMouseDown = (e) => {
+        super.handleMouseDown(e);
         this.drawing = true;
         this.path = [];
         this.context.beginPath();
-        this._draw(e);
-        this.canvas.addEventListener("mousemove", this._draw.bind(this));
-        this.canvas.addEventListener("mouseup", this._endDraw.bind(this));
+        this.handleMouseMove(e);
     }
 
-    _draw(e) {
+    handleMouseMove = (e) => {
         if (!this.drawing) return;
 
         let {x, y} = this.getMousePos(e);
@@ -25,12 +24,12 @@ export class Pen extends DrawingMode {
         });
     }
 
-    _endDraw() {
+    handleMouseUp = () => {
         if (!this.drawing) return;
-
         this.drawing = false;
-        this.canvas.removeEventListener("mousemove", this._draw.bind(this));
-        this.canvas.removeEventListener("mouseup", this._endDraw.bind(this));
+
+        super.handleMouseUp();
+
         const penShape = new PenShape(this.context.strokeStyle, this.context.lineWidth, this.path);
         DrawingMode.drawnShapes.push(penShape);
     }

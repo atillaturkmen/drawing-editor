@@ -6,9 +6,8 @@ export class ShapeMover extends DrawingMode {
         super(context, canvas);
         this.moveCursorActive = false;
     }
-    startMove = (e) => {
-        this.canvas.addEventListener("mousemove", this._handleMouseMove);
-        this.canvas.addEventListener("mouseup", this._handleMouseUp);
+    handleMouseDown = (e) => {
+        super.handleMouseDown(e);
 
         const {x, y} = this.getMousePos(e);
 
@@ -42,7 +41,7 @@ export class ShapeMover extends DrawingMode {
         }
     }
 
-    _handleMouseMove = (e) => {
+    handleMouseMove = (e) => {
         if (this.isDragging) {
             const {x, y} = this.getMousePos(e);
 
@@ -62,10 +61,9 @@ export class ShapeMover extends DrawingMode {
         }
     }
 
-    _handleMouseUp = () => {
+    handleMouseUp = () => {
+        super.handleMouseUp();
         this.isDragging = false;
-        this.canvas.removeEventListener("mousemove", this._handleMouseMove);
-        this.canvas.removeEventListener("mouseup", this._handleMouseUp);
     }
 
     _redrawCanvas = () => {

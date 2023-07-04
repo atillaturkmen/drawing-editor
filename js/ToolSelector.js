@@ -1,8 +1,8 @@
-import {Pen} from "../drawingModes/Pen.js";
-import {LineDrawer} from "../drawingModes/LineDrawer.js";
-import {RectangleDrawer} from "../drawingModes/RectangleDrawer.js";
-import {CircleDrawer} from "../drawingModes/CircleDrawer.js";
-import {ShapeMover} from "../drawingModes/ShapeMover.js";
+import {Pen} from "./drawingModes/Pen.js";
+import {LineDrawer} from "./drawingModes/LineDrawer.js";
+import {RectangleDrawer} from "./drawingModes/RectangleDrawer.js";
+import {CircleDrawer} from "./drawingModes/CircleDrawer.js";
+import {ShapeMover} from "./drawingModes/ShapeMover.js";
 
 export class ToolSelector {
     constructor(context, canvas) {
@@ -19,11 +19,11 @@ export class ToolSelector {
         this.move = new ShapeMover(context, canvas);
 
         // Bind the functions to their respective objects
-        this.penStartDraw = this.pen.startDraw.bind(this.pen);
-        this.startPath = this.path.startPath.bind(this.path);
-        this.startRect = this.rect.startRect.bind(this.rect);
-        this.startCircle = this.circle.startCircle.bind(this.circle);
-        this.startMove = this.move.startMove.bind(this.move);
+        this.penStartDraw = this.pen.handleMouseDown.bind(this.pen);
+        this.startPath = this.path.handleMouseDown.bind(this.path);
+        this.startRect = this.rect.handleMouseDown.bind(this.rect);
+        this.startCircle = this.circle.handleMouseDown.bind(this.circle);
+        this.startMove = this.move.handleMouseDown.bind(this.move);
         this.hoverMove = this.move.hoverForMoveCursor.bind(this.move);
     }
 

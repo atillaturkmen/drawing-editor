@@ -6,13 +6,6 @@ export class DrawingMode {
         DrawingMode.drawnShapes = [];
     }
 
-    startShape(e) {
-        const {x, y} = this.getMousePos(e);
-        this.startX = x;
-        this.startY = y;
-        this.savedImageData = this.context.getImageData(0, 0, this.canvas.width, this.canvas.height);
-    }
-
     getMousePos(evt) {
         let rect = this.canvas.getBoundingClientRect(),
             scaleX = this.canvas.width / rect.width,
@@ -28,7 +21,21 @@ export class DrawingMode {
         this.fill = !this.fill;
     }
 
-    moveShape(deltaX, deltaY) {
-        throw new Error('Abstract method moveShape has not been implemented.');
+    handleMouseDown(e) {
+        const {x, y} = this.getMousePos(e);
+        this.startX = x;
+        this.startY = y;
+        this.savedImageData = this.context.getImageData(0, 0, this.canvas.width, this.canvas.height);
+        this.canvas.addEventListener("mousemove", this.handleMouseMove);
+        this.canvas.addEventListener("mouseup", this.handleMouseUp);
+    }
+
+    handleMouseUp() {
+        this.canvas.removeEventListener("mousemove", this.handleMouseMove);
+        this.canvas.removeEventListener("mouseup", this.handleMouseUp);
+    }
+
+    handleMouseMove() {
+        throw new Error('Abstract method handleMouseMove has not been implemented.');
     }
 }

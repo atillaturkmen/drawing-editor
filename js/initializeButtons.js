@@ -1,4 +1,4 @@
-import {ToolSelector} from "./selectors/ToolSelector.js";
+import {ToolSelector} from "./ToolSelector.js";
 import {DrawingMode} from "./drawingModes/DrawingMode.js";
 
 export function initializeButtons(context, canvas) {
