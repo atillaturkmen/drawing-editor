@@ -1,5 +1,6 @@
 import {DrawingMode} from "./DrawingMode.js";
 import {Circle} from "../drawnShapes/Circle.js";
+import {DrawingManager} from "../DrawingManager.js";
 
 export class CircleDrawer extends DrawingMode {
     handleMouseMove = (e) => {
@@ -21,7 +22,14 @@ export class CircleDrawer extends DrawingMode {
 
     handleMouseUp = (e) => {
         super.handleMouseUp(e);
-        const circle = new Circle(this.context.strokeStyle, this.context.lineWidth, this.startX, this.startY, this.radius, this.fill);
-        DrawingMode.drawnShapes.push(circle);
+        const circle = new Circle(
+            this.context.strokeStyle,
+            this.context.lineWidth,
+            this.startX,
+            this.startY,
+            this.radius,
+            this.fill
+        );
+        DrawingManager.addShape(circle);
     };
 }

@@ -3,7 +3,6 @@ export class DrawingMode {
         this.context = context;
         this.canvas = canvas;
         this.fill = false;
-        DrawingMode.drawnShapes = [];
     }
 
     getMousePos(evt) {

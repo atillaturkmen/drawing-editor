@@ -1,4 +1,5 @@
 import {DrawingMode} from "./DrawingMode.js";
+import {DrawingManager} from "../DrawingManager.js";
 
 export class ShapeMover extends DrawingMode {
 
@@ -12,8 +13,10 @@ export class ShapeMover extends DrawingMode {
 
         const {x, y} = this.getMousePos(e);
 
-        for (let i = DrawingMode.drawnShapes.length - 1; i >= 0; i--) {
-            const shape = DrawingMode.drawnShapes[i];
+        const history = DrawingManager.getShapes();
+
+        for (let i = history.length - 1; i >= 0; i--) {
+            const shape = history[i];
             if (shape.isSelected(x, y)) {
                 this.selectedObject = shape;
                 this.initialMouseX = x;
@@ -26,8 +29,10 @@ export class ShapeMover extends DrawingMode {
 
     hoverForMoveCursor = (e) => {
         const {x, y} = this.getMousePos(e);
-        for (let i = DrawingMode.drawnShapes.length - 1; i >= 0; i--) {
-            const shape = DrawingMode.drawnShapes[i];
+        const history = DrawingManager.getShapes();
+
+        for (let i = history.length - 1; i >= 0; i--) {
+            const shape = history[i];
             if (shape.isSelected(x, y)) {
                 if (!this.moveCursorActive) {
                     this.canvas.classList.toggle('cursor-move');
@@ -54,7 +59,7 @@ export class ShapeMover extends DrawingMode {
             this.selectedObject.moveShape(deltaX, deltaY);
 
             // Redraw the canvas
-            this._redrawCanvas();
+            DrawingManager.redrawCanvas(this.context, this.canvas);
 
             // Update the initial mouse position for the next move
             this.initialMouseX = x;
@@ -65,19 +70,5 @@ export class ShapeMover extends DrawingMode {
     handleMouseUp = () => {
         super.handleMouseUp();
         this.isDragging = false;
-    }
-
-    _redrawCanvas = () => {
-        const currentColor = this.context.strokeStyle;
-        const currentSize = this.context.lineWidth;
-
-        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        for (const shape of DrawingMode.drawnShapes) {
-            shape.drawShape(this.context);
-        }
-
-        this.context.strokeStyle = currentColor;
-        this.context.fillStyle = currentColor;
-        this.context.lineWidth = currentSize;
     }
 }

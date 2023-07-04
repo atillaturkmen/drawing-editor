@@ -1,5 +1,6 @@
 import {DrawingMode} from "./DrawingMode.js";
 import {PenShape} from "../drawnShapes/PenShape.js";
+import {DrawingManager} from "../DrawingManager.js";
 
 export class Pen extends DrawingMode {
     handleMouseDown = (e) => {
@@ -30,7 +31,11 @@ export class Pen extends DrawingMode {
 
         super.handleMouseUp();
 
-        const penShape = new PenShape(this.context.strokeStyle, this.context.lineWidth, this.path);
-        DrawingMode.drawnShapes.push(penShape);
+        const penShape = new PenShape(
+            this.context.strokeStyle,
+            this.context.lineWidth,
+            this.path
+        );
+        DrawingManager.addShape(penShape);
     }
 }

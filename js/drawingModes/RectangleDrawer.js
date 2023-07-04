@@ -1,5 +1,6 @@
 import {DrawingMode} from "./DrawingMode.js";
 import {Rectangle} from "../drawnShapes/Rectangle.js";
+import {DrawingManager} from "../DrawingManager.js";
 
 export class RectangleDrawer extends DrawingMode {
     handleMouseMove = (e) => {
@@ -24,7 +25,15 @@ export class RectangleDrawer extends DrawingMode {
 
     handleMouseUp = () => {
         super.handleMouseUp();
-        const rectangle = new Rectangle(this.context.strokeStyle, this.context.lineWidth, this.startX, this.startY, this.endX - this.startX, this.endY - this.startY, this.fill);
-        DrawingMode.drawnShapes.push(rectangle);
+        const rectangle = new Rectangle(
+            this.context.strokeStyle,
+            this.context.lineWidth,
+            this.startX,
+            this.startY,
+            this.endX - this.startX,
+            this.endY - this.startY,
+            this.fill,
+        );
+        DrawingManager.addShape(rectangle);
     };
 }

@@ -1,5 +1,6 @@
 import {DrawingMode} from "./DrawingMode.js";
 import {Line} from "../drawnShapes/Line.js";
+import {DrawingManager} from "../DrawingManager.js";
 
 export class LineDrawer extends DrawingMode {
     handleMouseMove = (e) => {
@@ -17,7 +18,14 @@ export class LineDrawer extends DrawingMode {
 
     handleMouseUp = () => {
         super.handleMouseUp();
-        const line = new Line(this.context.strokeStyle, this.context.lineWidth, this.startX, this.startY, this.endX, this.endY);
-        DrawingMode.drawnShapes.push(line);
+        const line = new Line(
+            this.context.strokeStyle,
+            this.context.lineWidth,
+            this.startX,
+            this.startY,
+            this.endX,
+            this.endY
+        );
+        DrawingManager.addShape(line);
     };
 }

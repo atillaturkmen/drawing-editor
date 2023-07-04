@@ -1,5 +1,5 @@
 import '../css/style.css'
-import {initializeButtons} from "./initializeButtons.js";
+import {initializeButtons} from "./initializeButtons/initializeButtons.js";
 
 const canvas = document.getElementById("canvas");
 
@@ -14,11 +14,13 @@ canvas.classList.toggle('cursor-move');
 // context of the canvas
 const context = canvas.getContext("2d");
 
-context.lineCap = "round";
-context.lineJoin = "round";
-
-initializeButtons(context, canvas);
-
 // set default settings
 context.lineCap = 'round';
+context.lineJoin = "round";
+context.lineWidth = 5;
+
+// initialize buttons
+initializeButtons(context, canvas);
+
+// set default tool
 document.getElementById('pen').firstElementChild.click();
