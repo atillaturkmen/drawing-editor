@@ -8,7 +8,6 @@ export class CircleDrawer extends DrawingMode {
         const {x, y} = this.getMousePos(e);
         this.endX = x;
         this.endY = y;
-        console.log(this.endX, this.endY);
 
         this.radius = Math.sqrt(Math.pow(this.endX - this.startX, 2) + Math.pow(this.endY - this.startY, 2));
         this.context.beginPath();

@@ -6,6 +6,7 @@ export class ShapeMover extends DrawingMode {
         super(context, canvas);
         this.moveCursorActive = false;
     }
+
     handleMouseDown = (e) => {
         super.handleMouseDown(e);
 

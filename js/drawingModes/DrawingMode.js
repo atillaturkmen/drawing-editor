@@ -28,6 +28,7 @@ export class DrawingMode {
         this.savedImageData = this.context.getImageData(0, 0, this.canvas.width, this.canvas.height);
         this.canvas.addEventListener("mousemove", this.handleMouseMove);
         this.canvas.addEventListener("mouseup", this.handleMouseUp);
+        this.canvas.addEventListener("mouseleave", this.handleMouseLeave);
     }
 
     handleMouseUp() {
@@ -37,5 +38,9 @@ export class DrawingMode {
 
     handleMouseMove() {
         throw new Error('Abstract method handleMouseMove has not been implemented.');
+    }
+
+    handleMouseLeave = () => {
+        this.canvas.removeEventListener("mousemove", this.handleMouseMove);
     }
 }
