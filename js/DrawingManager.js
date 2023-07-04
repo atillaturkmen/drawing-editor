@@ -12,6 +12,7 @@ export class DrawingManager {
 
     static clearHistory() {
         DrawingManager.history = [];
+        DrawingManager.undoneHistory = [];
     }
 
     static undoLastShape() {
