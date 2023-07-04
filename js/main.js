@@ -4,8 +4,8 @@ import {initializeButtons} from "./initializeButtons.js";
 const canvas = document.getElementById("canvas");
 
 // resize canvas
-canvas.height = window.innerHeight;
-canvas.width = window.innerWidth;
+canvas.height = window.screen.height;
+canvas.width = window.screen.width;
 
 // move cursor sometimes doesn't work if I don't add it to the html first (??)
 // so I'm adding it in HTML and then removing it here
