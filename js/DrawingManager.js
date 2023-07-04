@@ -1,5 +1,6 @@
 export class DrawingManager {
     static history = [];
+    static undoneHistory = [];
 
     static addShape(shape) {
         DrawingManager.history.push(shape);
@@ -14,7 +15,17 @@ export class DrawingManager {
     }
 
     static undoLastShape() {
-        DrawingManager.history.pop();
+        const lastShape = DrawingManager.history.pop();
+        if (lastShape) {
+            DrawingManager.undoneHistory.push(lastShape);
+        }
+    }
+
+    static redoLastShape() {
+        const lastUndoneShape = DrawingManager.undoneHistory.pop();
+        if (lastUndoneShape) {
+            DrawingManager.history.push(lastUndoneShape);
+        }
     }
 
     static clearCanvas(context, canvas) {
