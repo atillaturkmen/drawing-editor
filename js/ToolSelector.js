@@ -11,6 +11,7 @@ export class ToolSelector {
 
         this.activeMouseDownEvent = null;
         this.activeMouseMoveEvent = null;
+        this.activeMouseLeaveEvent = null;
 
         this.pen = new Pen(context, canvas);
         this.path = new LineDrawer(context, canvas);
@@ -25,6 +26,7 @@ export class ToolSelector {
         this.startCircle = this.circle.handleMouseDown.bind(this.circle);
         this.startMove = this.move.handleMouseDown.bind(this.move);
         this.hoverMove = this.move.hoverForMoveCursor.bind(this.move);
+        this.stopHoverMove = this.move.stopHoverForMoveCursor.bind(this.move);
     }
 
     toggleFill() {
@@ -35,6 +37,7 @@ export class ToolSelector {
     setMode(e, mode) {
         this.canvas.removeEventListener("mousedown", this.activeMouseDownEvent);
         this.canvas.removeEventListener("mousemove", this.activeMouseMoveEvent);
+        this.canvas.removeEventListener("mouseleave", this.activeMouseLeaveEvent);
 
         switch (mode) {
             case 'pen':
@@ -60,12 +63,10 @@ export class ToolSelector {
             case 'move':
                 this.canvas.addEventListener("mousedown", this.startMove);
                 this.canvas.addEventListener("mousemove", this.hoverMove);
-                this.canvas.addEventListener("mouseleave", () => {
-                    this.move.moveCursorActive = false;
-                    this.canvas.classList.toggle('cursor-move');
-                });
+                this.canvas.addEventListener("mouseleave", this.stopHoverMove);
                 this.activeMouseDownEvent = this.startMove;
                 this.activeMouseMoveEvent = this.hoverMove;
+                this.activeMouseLeaveEvent = this.stopHoverMove;
                 break;
         }
 

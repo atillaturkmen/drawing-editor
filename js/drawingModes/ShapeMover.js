@@ -47,6 +47,13 @@ export class ShapeMover extends DrawingMode {
         }
     }
 
+    stopHoverForMoveCursor = () => {
+        if (this.moveCursorActive) {
+            this.canvas.classList.toggle('cursor-move');
+            this.moveCursorActive = false;
+        }
+    }
+
     handleMouseMove = (e) => {
         if (this.isDragging) {
             const {x, y} = this.getMousePos(e);
