@@ -5,6 +5,7 @@ import {DrawingManager} from "../DrawingManager.js";
 export class Pen extends DrawingMode {
     handleMouseDown = (e) => {
         super.handleMouseDown(e);
+        DrawingManager.clearUndoneHistory();
         this.drawing = true;
         this.path = [];
         this.context.beginPath();

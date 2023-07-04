@@ -22,6 +22,10 @@ export class DrawingManager {
         }
     }
 
+    static clearUndoneHistory() {
+        DrawingManager.undoneHistory = [];
+    }
+
     static redoLastShape() {
         const lastUndoneShape = DrawingManager.undoneHistory.pop();
         if (lastUndoneShape) {

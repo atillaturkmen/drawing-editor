@@ -3,6 +3,11 @@ import {Circle} from "../drawnShapes/Circle.js";
 import {DrawingManager} from "../DrawingManager.js";
 
 export class CircleDrawer extends DrawingMode {
+    handleMouseDown(e) {
+        super.handleMouseDown(e);
+        DrawingManager.clearUndoneHistory();
+    }
+
     handleMouseMove = (e) => {
         this.context.putImageData(this.savedImageData, 0, 0);
 

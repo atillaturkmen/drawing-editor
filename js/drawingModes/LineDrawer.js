@@ -3,6 +3,11 @@ import {Line} from "../drawnShapes/Line.js";
 import {DrawingManager} from "../DrawingManager.js";
 
 export class LineDrawer extends DrawingMode {
+    handleMouseDown(e) {
+        super.handleMouseDown(e);
+        DrawingManager.clearUndoneHistory();
+    }
+
     handleMouseMove = (e) => {
         this.context.putImageData(this.savedImageData, 0, 0);
 
