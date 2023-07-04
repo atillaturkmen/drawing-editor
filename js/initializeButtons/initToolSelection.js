@@ -9,4 +9,11 @@ export function initToolSelection(context, canvas) {
             toolSelector.setMode(e, tool.id);
         });
     }
+
+    // fill button is a special case because it is actually a toggle instead of a mode
+    function toggleFill() {
+        toolSelector.toggleFill();
+        this.classList.toggle('selected');
+    }
+    document.getElementById('fill').addEventListener('click', toggleFill);
 }
