@@ -60,6 +60,10 @@ export class ToolSelector {
             case 'move':
                 this.canvas.addEventListener("mousedown", this.startMove);
                 this.canvas.addEventListener("mousemove", this.hoverMove);
+                this.canvas.addEventListener("mouseleave", () => {
+                    this.move.moveCursorActive = false;
+                    this.canvas.classList.toggle('cursor-move');
+                });
                 this.activeMouseDownEvent = this.startMove;
                 this.activeMouseMoveEvent = this.hoverMove;
                 break;
