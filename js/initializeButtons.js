@@ -1,4 +1,5 @@
 import {ToolSelector} from "./selectors/ToolSelector.js";
+import {DrawingMode} from "./drawingModes/DrawingMode.js";
 
 export function initializeButtons(context, canvas) {
     // Color Selection Initialization
@@ -42,6 +43,7 @@ export function initializeButtons(context, canvas) {
 
     function clearCanvas() {
         context.clearRect(0, 0, canvas.width, canvas.height);
+        DrawingMode.drawnShapes = [];
     }
     document.getElementById('clear').addEventListener('click', clearCanvas);
 
