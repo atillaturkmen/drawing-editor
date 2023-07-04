@@ -68,7 +68,7 @@ This project is licensed under the [MIT License](LICENSE).
 
 ## Acknowledgments
 
-- The initial guidance for creating this drawing app came from the article [Create a Drawing App with HTML and JavaScript](https://www.programonaut.com/create-a-drawing-app-with-html-and-javascript/#both) by [Programonaut](https://www.programonaut.com/). The article provided valuable insights and served as a reference during the development process.
+- The initial guidance for creating this drawing app came from the article [Create a Drawing App with HTML and JavaScript](https://www.programonaut.com/create-a-drawing-app-with-html-and-javascript) by [Programonaut](https://www.programonaut.com/). The article provided valuable insights and served as a reference during the development process.
 - Color Fill icon by boxicons from [SVG Repo](https://www.svgrepo.com/svg/334566/color-fill)
 - Move icon by SVG Repo from [SVG Repo](https://www.svgrepo.com/svg/47365/move)
 - Paint Palette and Brush icon by SVG Repo from [SVG Repo](https://www.svgrepo.com/svg/78385/paint-palette-and-brush)
