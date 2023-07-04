@@ -4,7 +4,7 @@ export class Shape {
         this.size = size;
         // The distance threshold is used to determine if the mouse is
         // close enough to the shape to select it.
-        this.distanceThreshold = 10 + this.size / 2;
+        this.distanceThreshold = 15 + this.size / 2;
     }
 
     isSelected(x, y) {
