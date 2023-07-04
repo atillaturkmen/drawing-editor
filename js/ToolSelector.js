@@ -70,15 +70,17 @@ export class ToolSelector {
 
     _selectMode(e) {
         const tools = document.getElementsByClassName("tool");
+
         for (const tool of tools) {
             tool.classList.remove('selected');
         }
 
-        const size = document.querySelector(".size.selected");
-        if (size !== null) {
-            size.classList.remove('hide-select');
+        // If the user clicks on the icon instead of the button, the target will be the icon instead of the button
+        // Parent is the button, so we need to check if the parent has the class instead of the target
+        if (e.target.parentElement.classList.contains('tool')) {
+            e.target.parentElement.classList.add('selected');
+        } else {
+            e.target.classList.add('selected');
         }
-
-        e.target.parentElement.classList.add('selected');
     }
 }
