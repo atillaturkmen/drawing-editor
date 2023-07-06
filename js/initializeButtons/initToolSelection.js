@@ -11,9 +11,25 @@ export function initToolSelection(context, canvas) {
     }
 
     // fill button is a special case because it is actually a toggle instead of a mode
+    let fillWasSelected = false;
+    const circleIcon = document.getElementById("circle-img");
+    const squareIcon = document.getElementById("rect-img");
+
     function toggleFill() {
         toolSelector.toggleFill();
         this.classList.toggle('selected');
+
+        if (fillWasSelected) {
+            fillWasSelected = false;
+            circleIcon.src = "./assets/empty-circle.svg";
+            squareIcon.src = "./assets/empty-square.svg";
+        } else {
+            fillWasSelected = true;
+            circleIcon.src = "./assets/circle.svg";
+            squareIcon.src = "./assets/square.svg";
+        }
+
     }
+
     document.getElementById('fill').addEventListener('click', toggleFill);
 }
