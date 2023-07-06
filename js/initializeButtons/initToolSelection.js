@@ -19,14 +19,13 @@ export function initToolSelection(context, canvas) {
         toolSelector.toggleFill();
         this.classList.toggle('selected');
 
+        fillWasSelected = !fillWasSelected;
         if (fillWasSelected) {
-            fillWasSelected = false;
-            circleIcon.src = "./assets/empty-circle.svg";
-            squareIcon.src = "./assets/empty-square.svg";
+            circleIcon.src = new URL('/assets/circle.svg', import.meta.url);
+            squareIcon.src = new URL('/assets/square.svg', import.meta.url);
         } else {
-            fillWasSelected = true;
-            circleIcon.src = "./assets/circle.svg";
-            squareIcon.src = "./assets/square.svg";
+            circleIcon.src = new URL('/assets/empty-circle.svg', import.meta.url);
+            squareIcon.src = new URL('/assets/empty-square.svg', import.meta.url);
         }
 
     }
