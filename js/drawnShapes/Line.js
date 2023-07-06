@@ -10,10 +10,24 @@ export class Line extends Shape {
     }
 
     isSelected(x, y) {
-        // Formula for distance between a point and a line
-        const numerator = Math.abs((this.endY - this.startY) * x - (this.endX - this.startX) * y + this.endX * this.startY - this.endY * this.startX);
-        const denominator = Math.sqrt((this.endX - this.startX) ** 2 + (this.endY - this.startY) ** 2);
-        const distance = numerator / denominator;
+        const x1 = this.startX;
+        const y1 = this.startY;
+        const x2 = this.endX;
+        const y2 = this.endY;
+
+        // Calculate the squared length of the line segment
+        const segmentLengthSquared = (x2 - x1) ** 2 + (y2 - y1) ** 2;
+
+        // Calculate the parameterized position of the closest point on the line segment
+        const t = Math.max(0, Math.min(1, ((x - x1) * (x2 - x1) + (y - y1) * (y2 - y1)) / segmentLengthSquared));
+
+        // Calculate the coordinates of the closest point on the line segment
+        const closestX = x1 + t * (x2 - x1);
+        const closestY = y1 + t * (y2 - y1);
+
+        // Calculate the distance between the point and the closest point on the line segment
+        const distance = Math.sqrt((x - closestX) ** 2 + (y - closestY) ** 2);
+
         return distance <= this.distanceThreshold;
     }
 
