@@ -2,6 +2,13 @@
   "name": "drawing-editor",
   "private": true,
   "type": "module",
+  "description": "A drawing editor that allows users to draw and create or move shapes on a canvas.",
+  "author": "Atilla Turkmen",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/atillaturkmen/drawing-editor.git"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
