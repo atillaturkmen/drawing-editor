@@ -9,6 +9,7 @@ export function initColorSelection(context) {
 
     // Update the color preview when the color picker value changes
     colorPicker.addEventListener("input", function() {
+        colorPreview.style.backgroundImage = "none";
         colorPreview.style.backgroundColor = colorPicker.value;
         context.strokeStyle = colorPicker.value;
         context.fillStyle = colorPicker.value;

@@ -63,3 +63,11 @@
             -1px 1px 0 #000,
             1px 1px 0 #000;
 }
+
+.round-button {
+    width:7em;
+    height:7em;
+    line-height:7em;
+    border-radius: 100%;
+    text-align:center;
+}
