@@ -1,19 +1,9 @@
-export class DrawingMode {
+import {Tool} from "../Tool.js";
+
+export class DrawingTools extends Tool {
     constructor(context, canvas) {
-        this.context = context;
-        this.canvas = canvas;
+        super(context, canvas);
         this.fill = false;
-    }
-
-    getMousePos(evt) {
-        let rect = this.canvas.getBoundingClientRect(),
-            scaleX = this.canvas.width / rect.width,
-            scaleY = this.canvas.height / rect.height;
-
-        return {
-            x: (evt.clientX - rect.left) * scaleX,
-            y: (evt.clientY - rect.top) * scaleY
-        }
     }
 
     toggleFill() {
@@ -33,10 +23,6 @@ export class DrawingMode {
     handleMouseUp() {
         this.canvas.removeEventListener("mousemove", this.handleMouseMove);
         this.canvas.removeEventListener("mouseup", this.handleMouseUp);
-    }
-
-    handleMouseMove() {
-        throw new Error('Abstract method handleMouseMove has not been implemented.');
     }
 
     handleMouseLeave = () => {

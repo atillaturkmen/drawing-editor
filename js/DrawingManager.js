@@ -3,7 +3,13 @@ export class DrawingManager {
     static undoneHistory = [];
 
     static addShape(shape) {
+        DrawingManager.undoneHistory = [];
         DrawingManager.history.push(shape);
+    }
+
+    static deleteShape(shape) {
+        const index = DrawingManager.history.indexOf(shape);
+        DrawingManager.history.splice(index, 1);
     }
 
     static getShapes() {
@@ -20,10 +26,6 @@ export class DrawingManager {
         if (lastShape) {
             DrawingManager.undoneHistory.push(lastShape);
         }
-    }
-
-    static clearUndoneHistory() {
-        DrawingManager.undoneHistory = [];
     }
 
     static redoLastShape() {

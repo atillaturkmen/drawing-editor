@@ -1,8 +1,9 @@
-import {Pen} from "./drawingModes/Pen.js";
-import {LineDrawer} from "./drawingModes/LineDrawer.js";
-import {RectangleDrawer} from "./drawingModes/RectangleDrawer.js";
-import {CircleDrawer} from "./drawingModes/CircleDrawer.js";
-import {ShapeMover} from "./drawingModes/ShapeMover.js";
+import {Pen} from "./tools/drawingTools/Pen.js";
+import {LineDrawer} from "./tools/drawingTools/LineDrawer.js";
+import {RectangleDrawer} from "./tools/drawingTools/RectangleDrawer.js";
+import {CircleDrawer} from "./tools/drawingTools/CircleDrawer.js";
+import {ShapeMover} from "./tools/editTools/ShapeMover.js";
+import {ShapeDeleter} from "./tools/editTools/ShapeDeleter.js";
 
 export class ToolSelector {
     constructor(context, canvas) {
@@ -18,6 +19,7 @@ export class ToolSelector {
         this.rect = new RectangleDrawer(context, canvas);
         this.circle = new CircleDrawer(context, canvas);
         this.move = new ShapeMover(context, canvas);
+        this.delete = new ShapeDeleter(context, canvas);
 
         // Bind the functions to their respective objects
         this.penStartDraw = this.pen.handleMouseDown.bind(this.pen);
@@ -25,8 +27,11 @@ export class ToolSelector {
         this.startRect = this.rect.handleMouseDown.bind(this.rect);
         this.startCircle = this.circle.handleMouseDown.bind(this.circle);
         this.startMove = this.move.handleMouseDown.bind(this.move);
-        this.hoverMove = this.move.hoverForMoveCursor.bind(this.move);
-        this.stopHoverMove = this.move.stopHoverForMoveCursor.bind(this.move);
+        this.hoverMove = this.move.hoverForCustomCursor.bind(this.move);
+        this.stopHoverMove = this.move.stopHoverForCustomCursor.bind(this.move);
+        this.startDelete = this.delete.handleMouseDown.bind(this.delete);
+        this.hoverDelete = this.delete.hoverForCustomCursor.bind(this.delete);
+        this.stopHoverDelete = this.delete.stopHoverForCustomCursor.bind(this.delete);
     }
 
     toggleFill() {
@@ -67,6 +72,15 @@ export class ToolSelector {
                 this.activeMouseDownEvent = this.startMove;
                 this.activeMouseMoveEvent = this.hoverMove;
                 this.activeMouseLeaveEvent = this.stopHoverMove;
+                break;
+
+            case 'delete':
+                this.canvas.addEventListener("mousedown", this.startDelete);
+                this.canvas.addEventListener("mousemove", this.hoverDelete);
+                this.canvas.addEventListener("mouseleave", this.stopHoverDelete);
+                this.activeMouseDownEvent = this.startDelete;
+                this.activeMouseMoveEvent = this.hoverDelete;
+                this.activeMouseLeaveEvent = this.stopHoverDelete;
                 break;
         }
 

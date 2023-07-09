@@ -25,7 +25,7 @@
         <span id="paint-size-value" class="w-2 text-gray-700">5</span>
     </label>
 
-    <div id="tools" class="grid grid-rows-2 grid-cols-5 gap-1 justify-self-end">
+    <div id="tools" class="grid grid-rows-2 grid-cols-4 gap-1 justify-self-end">
         <button id="pen" class="setting tool" title="Pen Tool">
             <img src="./assets/pen.svg" alt="pen">
         </button>
@@ -41,6 +41,11 @@
         <button id="move" class="setting tool" title="Move Tool">
             <img src="./assets/move.svg" alt="move">
         </button>
+        <button id="delete" class="setting tool" title="Delete Tool">
+            <img src="./assets/delete.svg" alt="delete">
+        </button>
+        <!-- Empty div to align fill button to end -->
+        <div></div>
         <button id="fill" class="setting" title="Fill Tool">
             <img src="./assets/fill.svg" alt="fill">
         </button>
@@ -54,7 +59,7 @@
 
 </div>
 <canvas id="canvas"
-        class="w-full max-h-full aspect-video border-2 border-black border-solid mb-8 mt-8 cursor-move"></canvas>
+        class="w-full max-h-full aspect-video border-2 border-black border-solid mb-8 mt-8 cursor-move cursor-not-allowed"></canvas>
 <script type="module" src="./js/main.js"></script>
 </body>
 

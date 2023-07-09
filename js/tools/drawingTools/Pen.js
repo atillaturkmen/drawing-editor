@@ -1,11 +1,10 @@
-import {DrawingMode} from "./DrawingMode.js";
-import {PenShape} from "../drawnShapes/PenShape.js";
-import {DrawingManager} from "../DrawingManager.js";
+import {DrawingTools} from "./DrawingTools.js";
+import {PenShape} from "../../drawnShapes/PenShape.js";
+import {DrawingManager} from "../../DrawingManager.js";
 
-export class Pen extends DrawingMode {
+export class Pen extends DrawingTools {
     handleMouseDown = (e) => {
         super.handleMouseDown(e);
-        DrawingManager.clearUndoneHistory();
         this.drawing = true;
         this.path = [];
         this.context.beginPath();

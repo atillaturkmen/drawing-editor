@@ -1,13 +1,8 @@
-import {DrawingMode} from "./DrawingMode.js";
-import {Rectangle} from "../drawnShapes/Rectangle.js";
-import {DrawingManager} from "../DrawingManager.js";
+import {DrawingTools} from "./DrawingTools.js";
+import {Rectangle} from "../../drawnShapes/Rectangle.js";
+import {DrawingManager} from "../../DrawingManager.js";
 
-export class RectangleDrawer extends DrawingMode {
-    handleMouseDown(e) {
-        super.handleMouseDown(e);
-        DrawingManager.clearUndoneHistory();
-    }
-
+export class RectangleDrawer extends DrawingTools {
     handleMouseMove = (e) => {
         this.context.putImageData(this.savedImageData, 0, 0);
 

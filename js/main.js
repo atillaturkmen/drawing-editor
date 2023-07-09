@@ -7,9 +7,10 @@ const canvas = document.getElementById("canvas");
 canvas.height = window.screen.height;
 canvas.width = window.screen.width;
 
-// move cursor sometimes doesn't work if I don't add it to the html first (??)
+// custom cursors sometimes doesn't work if I don't add it to the html first (??)
 // so I'm adding it in HTML and then removing it here
 canvas.classList.toggle('cursor-move');
+canvas.classList.toggle('cursor-not-allowed');
 
 // context of the canvas
 const context = canvas.getContext("2d");

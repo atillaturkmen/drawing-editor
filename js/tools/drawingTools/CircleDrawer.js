@@ -1,12 +1,8 @@
-import {DrawingMode} from "./DrawingMode.js";
-import {Circle} from "../drawnShapes/Circle.js";
-import {DrawingManager} from "../DrawingManager.js";
+import {DrawingTools} from "./DrawingTools.js";
+import {Circle} from "../../drawnShapes/Circle.js";
+import {DrawingManager} from "../../DrawingManager.js";
 
-export class CircleDrawer extends DrawingMode {
-    handleMouseDown(e) {
-        super.handleMouseDown(e);
-        DrawingManager.clearUndoneHistory();
-    }
+export class CircleDrawer extends DrawingTools {
 
     handleMouseMove = (e) => {
         this.context.putImageData(this.savedImageData, 0, 0);

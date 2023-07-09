@@ -1,13 +1,8 @@
-import {DrawingMode} from "./DrawingMode.js";
-import {Line} from "../drawnShapes/Line.js";
-import {DrawingManager} from "../DrawingManager.js";
+import {DrawingTools} from "./DrawingTools.js";
+import {Line} from "../../drawnShapes/Line.js";
+import {DrawingManager} from "../../DrawingManager.js";
 
-export class LineDrawer extends DrawingMode {
-    handleMouseDown(e) {
-        super.handleMouseDown(e);
-        DrawingManager.clearUndoneHistory();
-    }
-
+export class LineDrawer extends DrawingTools {
     handleMouseMove = (e) => {
         this.context.putImageData(this.savedImageData, 0, 0);
 
