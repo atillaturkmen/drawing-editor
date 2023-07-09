@@ -6,10 +6,6 @@ export class DrawingTools extends Tool {
         this.fill = false;
     }
 
-    toggleFill() {
-        this.fill = !this.fill;
-    }
-
     handleMouseDown(e) {
         const {x, y} = this.getMousePos(e);
         this.startX = x;

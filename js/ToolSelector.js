@@ -34,11 +34,6 @@ export class ToolSelector {
         this.stopHoverDelete = this.delete.stopHoverForCustomCursor.bind(this.delete);
     }
 
-    toggleFill() {
-        this.rect.toggleFill();
-        this.circle.toggleFill();
-    }
-
     setMode(e, mode) {
         this.canvas.removeEventListener("mousedown", this.activeMouseDownEvent);
         this.canvas.removeEventListener("mousemove", this.activeMouseMoveEvent);
@@ -55,12 +50,26 @@ export class ToolSelector {
                 this.activeMouseDownEvent = this.startPath;
                 break;
 
-            case 'rect':
+            case 'empty-rect':
+                this.rect.fill = false;
                 this.canvas.addEventListener("mousedown", this.startRect);
                 this.activeMouseDownEvent = this.startRect;
                 break;
 
-            case 'circle':
+            case 'filled-rect':
+                this.rect.fill = true;
+                this.canvas.addEventListener("mousedown", this.startRect);
+                this.activeMouseDownEvent = this.startRect;
+                break;
+
+            case 'empty-circle':
+                this.circle.fill = false;
+                this.canvas.addEventListener("mousedown", this.startCircle);
+                this.activeMouseDownEvent = this.startCircle;
+                break;
+
+            case 'filled-circle':
+                this.circle.fill = true;
                 this.canvas.addEventListener("mousedown", this.startCircle);
                 this.activeMouseDownEvent = this.startCircle;
                 break;

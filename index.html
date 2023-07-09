@@ -11,7 +11,8 @@
 
     <div class="relative flex items-center">
         <label id="color-picker-label" for="color-picker"
-               class="mr-2 bg-black text-white px-10 rounded-lg flex items-center h-full">Pick Color</label>
+               class="mr-2 bg-black text-white px-10 rounded-lg flex items-center h-full text-shadow-black">
+            Pick Color</label>
         <div class="flex items-center">
             <input type="color" id="color-picker"
                    class="w-12 h-12 appearance-none rounded-lg border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
@@ -19,7 +20,7 @@
     </div>
 
     <label for="paint-size-slider" class="flex items-center space-x-2">
-        <span class="text-gray-700">Paint Size:</span>
+        <span class="text-gray-700">Stroke Width:</span>
         <input type="range" id="paint-size-slider" min="1" max="99" value="5"
                class="w-48 appearance-none bg-gradient-to-r from-black to-black rounded-md h-3 outline-none">
         <span id="paint-size-value" class="w-2 text-gray-700">5</span>
@@ -32,22 +33,23 @@
         <button id="path" class="setting tool" title="Path Tool">
             <img src="./assets/path.svg" alt="path">
         </button>
-        <button id="rect" class="setting tool" title="Rectangle Tool">
-            <img id="rect-img" src="./assets/empty-square.svg" alt="square">
-        </button>
-        <button id="circle" class="setting tool" title="Circle Tool">
-            <img id="circle-img" src="assets/empty-circle.svg" alt="square">
-        </button>
         <button id="move" class="setting tool" title="Move Tool">
             <img src="./assets/move.svg" alt="move">
         </button>
         <button id="delete" class="setting tool" title="Delete Tool">
             <img src="./assets/delete.svg" alt="delete">
         </button>
-        <!-- Empty div to align fill button to end -->
-        <div></div>
-        <button id="fill" class="setting" title="Fill Tool">
-            <img src="./assets/fill.svg" alt="fill">
+        <button id="empty-rect" class="setting tool" title="Rectangle Tool">
+            <img src="./assets/empty-square.svg" alt="square">
+        </button>
+        <button id="filled-rect" class="setting tool" title="Rectangle Tool">
+            <img src="assets/square.svg" alt="square">
+        </button>
+        <button id="empty-circle" class="setting tool" title="Circle Tool">
+            <img src="assets/empty-circle.svg" alt="square">
+        </button>
+        <button id="filled-circle" class="setting tool" title="Circle Tool">
+            <img src="assets/circle.svg" alt="square">
         </button>
     </div>
 
