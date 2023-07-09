@@ -10,10 +10,16 @@ export class DrawingManager {
     static deleteShape(shape) {
         const index = DrawingManager.history.indexOf(shape);
         DrawingManager.history.splice(index, 1);
+        DrawingManager.history.push({
+            type: "delete",
+            shape: shape,
+            index: index,
+        });
+        DrawingManager.undoneHistory = [];
     }
 
     static getShapes() {
-        return DrawingManager.history;
+        return DrawingManager.history.filter((shape) => shape.type !== "delete");
     }
 
     static clearHistory() {
@@ -23,16 +29,20 @@ export class DrawingManager {
 
     static undoLastShape() {
         const lastShape = DrawingManager.history.pop();
-        if (lastShape) {
-            DrawingManager.undoneHistory.push(lastShape);
+        if (lastShape === undefined) return;
+        if (lastShape.type === "delete") {
+            DrawingManager.history.splice(lastShape.index, 0, lastShape.shape);
         }
+        DrawingManager.undoneHistory.push(lastShape);
     }
 
     static redoLastShape() {
         const lastUndoneShape = DrawingManager.undoneHistory.pop();
-        if (lastUndoneShape) {
-            DrawingManager.history.push(lastUndoneShape);
+        if (lastUndoneShape === undefined) return;
+        if (lastUndoneShape.type === "delete") {
+            DrawingManager.history.splice(lastUndoneShape.index, 1);
         }
+        DrawingManager.history.push(lastUndoneShape);
     }
 
     static clearCanvas(context, canvas) {
